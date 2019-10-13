@@ -10,7 +10,7 @@ $ pip3 install --user prtg-cli
 
 # Setup
 
-For communication the PRTG, use options or set the `PRTG_HOST`, `PRTG_USERNAME`, (`PRTG_PASSWORD` or `PRTG_PASSHASH`) environment variables
+For communication with PRTG, use options or set the `PRTG_HOST`, `PRTG_USERNAME`, (`PRTG_PASSWORD` or `PRTG_PASSHASH`) environment variables
 
 # Usage
 
