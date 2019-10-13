@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "prtg-cli"
+version = "0.1.0"
+description = "CLI for PRTG Network Monitor"
+authors = ["Fatih Sarhan <f9n@protonmail.com>"]
+license = "GPL-3.0"
+readme = "README.md"
+homepage = "https://github.com/f9n/prtg-cli"
+repository = "https://github.com/f9n/prtg-cli"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+requests = "^2.22"
+click = "^7.0"
+xmltodict = "^0.12.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.0"
+black = { version = "^18.9b0", python = "^3.6" }
+
+[tool.poetry.scripts]
+prtg-cli = "prtg_cli.cli:main"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
