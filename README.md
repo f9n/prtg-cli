@@ -1,4 +1,4 @@
-# prtg-cli 
+# prtg-cli [![PyPi version](https://img.shields.io/pypi/v/prtg-cli.svg)](https://pypi.python.org/pypi/prtg-cli/) [![PyPI pyversions](https://img.shields.io/pypi/pyversions/prtg-cli.svg)](https://pypi.python.org/pypi/prtg-cli/) [![](https://img.shields.io/github/license/f9n/prtg-cli.svg)](https://github.com/f9n/prtg-cli/blob/master/LICENSE)
 
 CLI for PRTG Network Monitor
 
