@@ -5,6 +5,7 @@ import click
 from .duplicate import duplicate_command
 from .get import get_command
 from .object import object_command
+from .manager import manager_command
 
 
 @click.command("prtg_version")

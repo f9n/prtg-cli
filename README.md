@@ -76,6 +76,27 @@ $ prtg-cli object --state stop --resource devices --item <DEVICE_NAME>
 $ prtg-cli object --state delete --resource devices --item <DEVICE_NAME>
 ```
 
+# Example of Adding Multiple Devices With Config File
+
+```bash
+$ cat example.yml
+# Device Name
+clone: PROD_RABBITMQ_CLUSTER
+# Target Group
+group: PRTG_CLI
+
+devices:
+  - name: CHECKOUT_RMQ_CLUSTER_01
+    host: 10.0.20.32
+
+  - name: CHECKOUT_RMQ_CLUSTER_02
+    host: 10.0.20.33
+
+$ prtg-cli manager --config-file example.yml
+- Create new 'CHECKOUT_RMQ_CLUSTER_01' device
+- Create new 'CHECKOUT_RMQ_CLUSTER_02' device
+```
+
 # Credits
 
 Thank you for offering fabulous, amazing, incredible rest api at PRTG, it is very nice. :)

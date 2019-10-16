@@ -1,0 +1,12 @@
+---
+# Device Name
+clone: PROD_RABBITMQ_CLUSTER
+# Target Group
+group: PRTG_CLI
+
+devices:
+  - name: CHECKOUT_RMQ_CLUSTER_01
+    host: 10.0.20.32
+
+  - name: CHECKOUT_RMQ_CLUSTER_02
+    host: 10.0.20.33

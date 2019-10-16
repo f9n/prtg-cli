@@ -12,6 +12,7 @@ from .commands import (
     passhash_command,
     status_command,
     sensor_types_command,
+    manager_command,
 )
 from .core import Prtg, PrtgConfig
 
@@ -45,3 +46,4 @@ main.add_command(status_command)
 main.add_command(sensor_types_command)
 main.add_command(prtg_version_command)
 main.add_command(passhash_command)
+main.add_command(manager_command)
