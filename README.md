@@ -5,7 +5,7 @@ CLI for PRTG Network Monitor
 # Installation
 
 ```bash
-$ pip3 install --user prtg-cli
+$ pip3 install --user --upgrade prtg-cli
 ```
 
 # Setup
