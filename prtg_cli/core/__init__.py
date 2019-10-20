@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import json
 
 import requests
@@ -11,6 +11,10 @@ from .constants import PRTG_REQUEST_CONFIGS
 @dataclass
 class Prtg:
     config: PrtgConfig
+    _resources: dict = field(default=None, repr=False)
+
+    def __post_init__(self):
+        self._resources = {}
 
     def version(self):
         status = self.status()
@@ -61,9 +65,20 @@ class Prtg:
 
         return data
 
+    def _clear_cache_resources(self, resource="*"):
+        if resource == "*":
+            self._resources = {}
+
+        self._resources[resource] = None
+
     def _get(self, resource):
+        cache_data = self._resources.get(resource)
+        if cache_data:
+            return cache_data
+
         status_code, content = self._request(resource)
         data = xml_to_json(content)
+        self._resources[resource] = data
         return data
 
     def get(self, resource, name):
