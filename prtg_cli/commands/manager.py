@@ -44,13 +44,20 @@ def manager_command(prtg, config_file):
             for device in data["devices"]:
                 name = device["name"]
                 host = device["host"]
-                print(f"- Create new '{name}' device")
-                prtg.duplicate_device(
-                    source=clone_id,
-                    target_group=group_id,
-                    target_name=name,
-                    target_host=host,
-                )
+
+                device = prtg._get_by_name_without_exception("devices", name)
+                if not device:
+                    click.echo(f"- Create new '{name}' device")
+                    prtg.duplicate_device(
+                        source=clone_id,
+                        target_group=group_id,
+                        target_name=name,
+                        target_host=host,
+                    )
+                else:
+                    click.echo(
+                        f"- This '{name}' device cannot be created because it exists."
+                    )
 
     except Exception as e:
         sys.exit(e)
