@@ -54,7 +54,7 @@ def manager_command(prtg, config_file, force_recreate):
                     target_host=host,
                     force_recreate=force_recreate,
                 )
-                if err:
+                if not err:
                     click.echo(msg)
 
     except Exception as e:
