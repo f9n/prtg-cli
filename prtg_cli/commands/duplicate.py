@@ -17,9 +17,9 @@ def duplicate_command():
 def duplicate_device(prtg, source, target_group, target_name, target_host):
     try:
         if prtg.duplicate_device(source, target_group, target_name, target_host) == 200:
-            click.secho('Success', fg='green')
+            click.secho("Success", fg="green")
         else:
-            click.secho('Error', fg='red')
+            click.secho("Error", fg="red")
     except Exception as e:
         sys.exit(e)
 
@@ -32,9 +32,9 @@ def duplicate_device(prtg, source, target_group, target_name, target_host):
 def duplicate_group(prtg, source, target, target_name):
     try:
         if prtg.duplicate_group(source, target, target_name) == 200:
-            click.secho('Success', fg='green')
+            click.secho("Success", fg="green")
         else:
-            click.secho('Error', fg='red')
+            click.secho("Error", fg="red")
     except Exception as e:
         sys.exit(e)
 

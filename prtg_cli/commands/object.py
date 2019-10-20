@@ -17,8 +17,8 @@ import click
 def object_command(prtg, state, resource, item):
     try:
         if prtg.object_state(state, resource, item) == 200:
-            click.secho('Success', fg='green')
+            click.secho("Success", fg="green")
         else:
-            click.secho('Error', fg='red')
+            click.secho("Error", fg="red")
     except Exception as e:
         sys.exit(e)
