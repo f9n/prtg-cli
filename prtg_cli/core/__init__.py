@@ -102,15 +102,22 @@ class Prtg:
         )
         return status_code
 
-    def duplicate_device(self, source, target_group, target_name, target_host):
+    def duplicate_device(
+        self, source, target_group, target_name, target_host, force_recreate=False
+    ):
         source_id = self._check_existence_of_item("devices", source)
         target_id = self._check_existence_of_item("groups", target_group)
 
         device = self._get_by_name_without_exception("devices", target_name)
-        if not device is None:
-            raise Exception(
-                f"This '{target_name}' item is exists in 'devices' resource"
-            )
+        if device:
+            if not force_recreate:
+                return (
+                    f"This '{target_name}' device item is exists in 'devices' resource",
+                    False,
+                )
+
+            device_id = device["objid"]
+            status_code = self.object_state("delete", "devices", device_id)
 
         special_params = {
             "id": source_id,
@@ -122,7 +129,7 @@ class Prtg:
         status_code, content = self._request(
             request_resource, special_params=special_params
         )
-        return status_code
+        return status_code, True
 
     def duplicate_group(self, source, target, target_name):
         source_id = self._check_existence_of_item("groups", source)
