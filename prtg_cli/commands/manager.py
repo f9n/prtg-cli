@@ -26,8 +26,9 @@ properties:
 
 @click.command("manager")
 @click.option("--config-file", required=True)
+@click.option("--force-recreate", is_flag=True)
 @click.pass_obj
-def manager_command(prtg, config_file):
+def manager_command(prtg, config_file, force_recreate):
     try:
         with io.open(config_file, "r") as f:
             data = yaml.safe_load(f)
@@ -45,19 +46,16 @@ def manager_command(prtg, config_file):
                 name = device["name"]
                 host = device["host"]
 
-                device = prtg._get_by_name_without_exception("devices", name)
-                if not device:
-                    click.echo(f"- Create new '{name}' device")
-                    prtg.duplicate_device(
-                        source=clone_id,
-                        target_group=group_id,
-                        target_name=name,
-                        target_host=host,
-                    )
-                else:
-                    click.echo(
-                        f"- This '{name}' device cannot be created because it exists."
-                    )
+                click.echo(f"- Create new '{name}' device")
+                msg, err = prtg.duplicate_device(
+                    source=clone_id,
+                    target_group=group_id,
+                    target_name=name,
+                    target_host=host,
+                    force_recreate=force_recreate,
+                )
+                if err:
+                    click.echo(msg)
 
     except Exception as e:
         sys.exit(e)
